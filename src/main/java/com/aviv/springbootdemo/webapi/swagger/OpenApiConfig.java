@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@OpenAPIDefinition(servers = { @Server(url = "https://localhost:8080") }, info = @Info(title = "Your API Title", description = "Small api description"))
+@OpenAPIDefinition(servers = { @Server(url = "http://localhost:8080") }, info = @Info(title = "Your API Title", description = "Small api description"))
 @SecurityScheme(name = "myOauth2Security",
         type = SecuritySchemeType.OAUTH2,
         in = SecuritySchemeIn.HEADER,
