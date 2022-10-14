@@ -12,3 +12,13 @@
 - Add swagger
 - Security headers
 - Integration Tests
+
+# Prerequisite
+- Make sure you have java installed
+- Install JDK 19 from your IDE
+
+# Usage
+1. Clone project to your local computer
+2. Use your preffered IDE to open the skeleton
+3. Edit according to needs (or use example to check it out)
+4. Run using the pre-build run configuration under .run
