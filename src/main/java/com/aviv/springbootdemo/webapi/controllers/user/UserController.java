@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(
-        path = "/users"
+        path = "/api/v1/users"
 )
 public class UserController {
 
