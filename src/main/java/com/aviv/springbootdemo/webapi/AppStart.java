@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.aviv.springbootdemo" })
-@EnableAsync
 public class AppStart {
 
 	public static void main(String[] args) {
