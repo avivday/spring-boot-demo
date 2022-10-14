@@ -7,9 +7,9 @@
 - Mocking for DAO
 - application.properties to control each dao (choose mock or real for each data source you have)
 - Unit testing against mock
+- Swagger (Auto generate docs using javadoc standard) - keep your code documented, document Interfaces & Controller
 
 ## TODO:
-- Add swagger
 - Security headers
 - Integration Tests
 
