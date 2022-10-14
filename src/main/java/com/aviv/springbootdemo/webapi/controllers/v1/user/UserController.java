@@ -1,17 +1,10 @@
-package com.aviv.springbootdemo.webapi.controllers.user;
+package com.aviv.springbootdemo.webapi.controllers.v1.user;
 
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
-import com.aviv.springbootdemo.webapi.controllers.user.models.CreateUserModel;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.media.SchemaProperties;
+import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +12,7 @@ import java.util.UUID;
 /**
  * User Controller
  */
-@RestController
+@RestController()
 @RequestMapping(
         path = "/api/v1/users"
 )

@@ -1,4 +1,4 @@
-package com.aviv.springbootdemo.webapi.controllers.user.models;
+package com.aviv.springbootdemo.webapi.controllers.v1.user.models;
 
 import com.aviv.springbootdemo.model.user.Gender;
 

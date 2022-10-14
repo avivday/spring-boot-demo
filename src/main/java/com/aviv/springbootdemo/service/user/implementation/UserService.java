@@ -3,7 +3,7 @@ package com.aviv.springbootdemo.service.user.implementation;
 import com.aviv.springbootdemo.dao.postgres.contract.user.IUserDao;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
-import com.aviv.springbootdemo.webapi.controllers.user.models.CreateUserModel;
+import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

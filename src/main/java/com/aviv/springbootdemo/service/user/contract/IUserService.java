@@ -1,7 +1,7 @@
 package com.aviv.springbootdemo.service.user.contract;
 
 import com.aviv.springbootdemo.model.user.User;
-import com.aviv.springbootdemo.webapi.controllers.user.models.CreateUserModel;
+import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 
 import java.util.List;
 import java.util.UUID;

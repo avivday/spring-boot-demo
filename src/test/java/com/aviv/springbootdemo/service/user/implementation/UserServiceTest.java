@@ -4,7 +4,7 @@ import com.aviv.springbootdemo.dao.postgres.mock.user.UserDaoMock;
 import com.aviv.springbootdemo.model.user.Gender;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
-import com.aviv.springbootdemo.webapi.controllers.user.models.CreateUserModel;
+import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
