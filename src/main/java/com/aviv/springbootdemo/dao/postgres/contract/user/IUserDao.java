@@ -12,10 +12,11 @@ public interface IUserDao {
      */
     List<User> getAllUsers();
 
+
     /**
-     * Get user by user UUID
-     * @param userUid - requested user UUID
-     * @return User
+     *
+     * @param userUid
+     * @return
      */
     User getUserByUUID(UUID userUid);
 

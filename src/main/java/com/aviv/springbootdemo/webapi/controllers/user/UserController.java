@@ -3,6 +3,10 @@ package com.aviv.springbootdemo.webapi.controllers.user;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
 import com.aviv.springbootdemo.webapi.controllers.user.models.CreateUserModel;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.SchemaProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * User Controller
+ */
 @RestController
 @RequestMapping(
         path = "/api/v1/users"
@@ -25,26 +32,48 @@ public class UserController {
         this._userService = userService;
     }
 
+    /**
+     * Get all users
+     * @return List of users
+     */
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return this._userService.getAllUsers();
     }
 
+    /**
+     * Get user by uid
+     * @param userUid user identifier
+     * @return User
+     */
     @RequestMapping(path = "{userUid}", method = RequestMethod.GET)
     public User getUserByUid(@PathVariable("userUid") UUID userUid) {
         return this._userService.getUserByUUID(userUid);
     }
 
+    /**
+     * Insert a new user
+     * @param user user to insert
+     */
     @RequestMapping(path = "", method = RequestMethod.POST)
     public void insertUser(CreateUserModel user) {
         this._userService.insertUser(user);
     }
 
+    /**
+     * Update user
+     * @param userUid user identifier to update
+     * @param user User to update
+     */
     @RequestMapping(path = "{userUid}", method = RequestMethod.PUT)
     public void updateUser(@PathVariable("userUid") UUID userUid, User user) {
         this._userService.updateUser(user);
     }
 
+    /**
+     * Remove user
+     * @param userUid user identifier to delete
+     */
     @RequestMapping(path = "{userUid}", method = RequestMethod.DELETE)
     public void removeUser(@PathVariable("userUid") UUID userUid) {
         this._userService.removeUserByUUID(userUid);

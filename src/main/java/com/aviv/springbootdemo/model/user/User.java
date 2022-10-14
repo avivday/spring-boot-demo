@@ -1,18 +1,40 @@
 package com.aviv.springbootdemo.model.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.UUID;
 
 public class User {
 
-    // user id
+    /**
+     * User identifier
+     */
     private final UUID userUid;
+
+    /**
+     * First name
+     */
     private final String firstName;
+
+    /**
+     * Last name
+     */
     private final String lastName;
+
+    /**
+     * Gender
+     */
     private final Gender gender;
+
+    /**
+     * Age
+     */
     private final Integer age;
+
+    /**
+     * Email
+     */
     private final String email;
 
     public User(

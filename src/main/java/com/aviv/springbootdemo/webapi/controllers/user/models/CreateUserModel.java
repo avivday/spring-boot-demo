@@ -5,10 +5,29 @@ import com.aviv.springbootdemo.model.user.Gender;
 import java.util.Optional;
 
 public class CreateUserModel {
+    /**
+     * First name
+     */
     private String firstName;
+
+    /**
+     * Last Name
+     */
     private String lastName;
+
+    /**
+     * Gender
+     */
     private Gender gender;
+
+    /**
+     * Age
+     */
     private Integer age;
+
+    /**
+     * Email
+     */
     private String email;
 
     public CreateUserModel(String firstName, String lastName, Gender gender, Integer age, String email) {
