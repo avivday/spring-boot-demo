@@ -9,9 +9,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
 
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertThrows;
 
 class UserServiceTest {
 
@@ -62,7 +64,7 @@ class UserServiceTest {
         User user = this._userService.getAllUsers().get(0);
         this._userService.removeUserByUUID(user.getUserUid());
 
-        assertThat(this._userService.getUserByUUID(user.getUserUid())).isNull();
+        assertThrows(NotFoundException.class, () -> this._userService.getUserByUUID(user.getUserUid()));
     }
 
     @Test

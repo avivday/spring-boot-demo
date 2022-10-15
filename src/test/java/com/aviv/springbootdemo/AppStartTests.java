@@ -9,8 +9,4 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class AppStartTests {
 
-	@Test
-	void isShouldFetchAllUsers() {
-	}
-
 }

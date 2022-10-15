@@ -76,7 +76,6 @@ public class UserController {
     }
 
     @RequestMapping(path = "/special", method = RequestMethod.GET)
-
     public User special() {
         // some special magic here
         return this._userService.getAllUsers().get(0);

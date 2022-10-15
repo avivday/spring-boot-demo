@@ -1,10 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Dev" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <option name="ACTIVE_PROFILES" />
+  <configuration default="false" name="Prod" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="prod" />
     <module name="spring-boot-demo" />
-    <selectedOptions>
-      <option name="spring.boot.profiles" visible="false" />
-    </selectedOptions>
     <option name="SPRING_BOOT_MAIN_CLASS" value="com.aviv.springbootdemo.webapi.AppStart" />
     <method v="2">
       <option name="Make" enabled="true" />
