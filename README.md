@@ -22,3 +22,16 @@
 2. Use your preffered IDE to open the skeleton
 3. Edit according to needs (or use example to check it out)
 4. Run using the pre-build run configuration under .run
+
+# Build
+* Run `./mvnw package` inside the root folder to build executable jar
+* Build output is under target/your-build-name.SNAPSHOT.jar
+# Test executable
+* Run 
+```
+java -jar build-output-name.jar
+``` 
+* To add profiles add flag: `-Dspring.profiles.active=prod`
+* Example with profile: 
+```
+ ava -jar -Dspring.profiles.active=prod build-output-name.jar
