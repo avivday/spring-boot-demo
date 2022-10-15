@@ -21,7 +21,10 @@
 1. Clone project to your local computer
 2. Use your preffered IDE to open the skeleton
 3. Edit according to needs (or use example to check it out)
-4. Run using the pre-build run configuration under .run
+4. Run using the pre-build run configuration under .run or using the command:
+```bash
+./mvnw spring-boot:run
+```
 
 # Build
 * Run `./mvnw package` inside the root folder to build executable jar
