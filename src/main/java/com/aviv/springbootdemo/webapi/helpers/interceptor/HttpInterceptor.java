@@ -22,10 +22,4 @@ public class HttpInterceptor implements HandlerInterceptor {
     {
         System.out.println("MINIMAL: INTERCEPTOR PREHANDLE CALLED");
     }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception exception) throws Exception
-    {
-        System.out.println("MINIMAL: INTERCEPTOR AFTERCOMPLETION CALLED");
-    }
 }

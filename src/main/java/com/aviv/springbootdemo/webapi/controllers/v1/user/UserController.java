@@ -74,4 +74,11 @@ public class UserController {
     public void removeUser(@PathVariable("userUid") UUID userUid) {
         this._userService.removeUserByUUID(userUid);
     }
+
+    @RequestMapping(path = "/special", method = RequestMethod.GET)
+
+    public User special() {
+        // some special magic here
+        return this._userService.getAllUsers().get(0);
+    }
 }
