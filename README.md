@@ -15,7 +15,7 @@
 
 # Prerequisite
 - Make sure you have java installed
-- Install JDK 19 from your IDE
+- Install JDK 19
 
 # Usage
 1. Clone project to your local computer
