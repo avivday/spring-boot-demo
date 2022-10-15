@@ -3,6 +3,10 @@ package com.aviv.springbootdemo.model.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 public class User {
@@ -15,26 +19,34 @@ public class User {
     /**
      * First name
      */
+    @NotNull
     private final String firstName;
 
     /**
      * Last name
      */
+    @NotNull
     private final String lastName;
 
     /**
      * Gender
      */
+    @NotNull
     private final Gender gender;
 
     /**
      * Age
      */
+    @NotNull
+    @Min(value = 0)
+    @Max(value = 120)
     private final Integer age;
 
     /**
      * Email
      */
+    @NotNull
+    @Email
     private final String email;
 
     public User(

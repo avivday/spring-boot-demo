@@ -2,6 +2,7 @@ package com.aviv.springbootdemo.service.user.contract;
 
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
+import javassist.NotFoundException;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,7 @@ public interface IUserService {
      * @param userUid - requested user UUID
      * @return User
      */
-    User getUserByUUID(UUID userUid);
+    User getUserByUUID(UUID userUid) throws Exception;
 
     /**
      * Update user

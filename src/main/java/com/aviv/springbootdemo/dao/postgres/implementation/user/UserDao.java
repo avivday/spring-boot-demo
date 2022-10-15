@@ -11,7 +11,7 @@ import java.util.*;
 
 @Repository("UserDao")
 @Primary
-@ConditionalOnProperty(prefix = "postgres", name = "mock", havingValue = "false")
+@ConditionalOnProperty(prefix = "app.settings.dao.postgres", name = "mock", havingValue = "false")
 public class UserDao implements IUserDao {
 
     // real implementation, connect to your db and return real data.

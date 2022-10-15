@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository("UserDaoMock")
-@ConditionalOnProperty(prefix = "postgres", name = "mock", havingValue = "true")
+@ConditionalOnProperty(prefix = "app.settings.dao.postgres", name = "mock", havingValue = "true")
 public class UserDaoMock implements IUserDao {
 
     private static Map<UUID, User> fakeData;

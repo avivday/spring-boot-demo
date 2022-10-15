@@ -4,14 +4,17 @@ import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 /**
  * User Controller
  */
+@Validated
 @RestController()
 @RequestMapping(
         path = "/api/v1/users"
@@ -40,7 +43,7 @@ public class UserController {
      * @return User
      */
     @RequestMapping(path = "{userUid}", method = RequestMethod.GET)
-    public User getUserByUid(@PathVariable("userUid") UUID userUid) {
+    public User getUserByUid(@PathVariable("userUid") UUID userUid) throws Exception {
         return this._userService.getUserByUUID(userUid);
     }
 
@@ -49,7 +52,7 @@ public class UserController {
      * @param user user to insert
      */
     @RequestMapping(path = "", method = RequestMethod.POST)
-    public void insertUser(CreateUserModel user) {
+    public void insertUser(@Valid CreateUserModel user) {
         this._userService.insertUser(user);
     }
 

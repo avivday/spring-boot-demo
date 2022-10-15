@@ -15,15 +15,8 @@ public class ExceptionClassInfo {
         return status;
     }
 
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
     public String getFriendlyMessage() {
         return friendlyMessage;
     }
 
-    public void setFriendlyMessage(String friendlyMessage) {
-        this.friendlyMessage = friendlyMessage;
-    }
 }

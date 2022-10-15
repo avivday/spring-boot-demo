@@ -7,6 +7,7 @@ import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,8 +27,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserByUUID(UUID userUid) {
-        return this._userDao.getUserByUUID(userUid);
+    public User getUserByUUID(UUID userUid) throws Exception {
+        User user = this._userDao.getUserByUUID(userUid);
+        if(user == null) throw new NotFoundException("test");
+
+        return user;
     }
 
     @Override

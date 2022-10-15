@@ -3,39 +3,59 @@ package com.aviv.springbootdemo.webapi.helpers.exception;
 import java.util.Date;
 
 public class ExceptionDetails {
-    private String message;
-    private String details;
-    private Throwable cause;
 
+    /**
+     * User friendly message - for client use
+     */
+    private String userFriendlyErrorMessage;
+
+    /**
+     * Error message - the real error message, dev use only
+     */
+    private String errorMessage;
+
+    /**
+     * Stacktrace - the real stacktrace, dev use only
+     */
+    private String stacktrace;
+
+    /**
+     * Timestamp of the exception
+     */
     private final Date timestamp;
 
-    public ExceptionDetails(String message, String details, Date timestamp, Throwable cause) {
-        this.message = message;
-        this.details = details;
+    public ExceptionDetails(String userFriendlyErrorMessage, String errorMessage, String stacktrace, Date timestamp) {
+        this.userFriendlyErrorMessage = userFriendlyErrorMessage;
+        this.errorMessage = errorMessage;
+        this.stacktrace = stacktrace;
         this.timestamp = timestamp;
-        this.cause = cause;
     }
 
-    public String getMessage() {
-        return message;
+    public String getUserFriendlyErrorMessage() {
+        return userFriendlyErrorMessage;
     }
 
-    public String getDetails() {
-        return details;
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public String getStacktrace() {
+        return stacktrace;
     }
 
     public Date getTimestamp() {
         return timestamp;
     }
-    public Throwable getCause() {
-        return this.cause;
+
+    public void setUserFriendlyErrorMessage(String userFriendlyErrorMessage) {
+        this.userFriendlyErrorMessage = userFriendlyErrorMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public void setCause(Throwable cause) {
-        this.cause = cause;
+    public void setStacktrace(String stacktrace) {
+        this.stacktrace = stacktrace;
     }
 }

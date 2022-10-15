@@ -38,7 +38,7 @@ class UserServiceTest {
 
     @Test
     @DirtiesContext
-    void getUserByUUID() {
+    void getUserByUUID() throws Exception {
         User user = this._userService.getAllUsers().get(0);
         User findUser = this._userService.getUserByUUID(user.getUserUid());
 
@@ -47,7 +47,7 @@ class UserServiceTest {
 
     @Test
     @DirtiesContext
-    void updateUser() {
+    void updateUser() throws Exception {
         User user = this._userService.getAllUsers().get(0);
         User updatedUser = new User(
                 user.getUserUid(), user.getFirstName(), user.getLastName(), user.getGender(), 30, "updated@email.com");
@@ -58,7 +58,7 @@ class UserServiceTest {
 
     @Test
     @DirtiesContext
-    void removeUserByUUID() {
+    void removeUserByUUID() throws Exception {
         User user = this._userService.getAllUsers().get(0);
         this._userService.removeUserByUUID(user.getUserUid());
 
