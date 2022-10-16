@@ -17,13 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(servers = { @Server(url = "http://localhost:8080") }, info = @Info(title = "Your API Title", description = "Small api description"))
-@SecurityScheme(name = "myOauth2Security",
-        type = SecuritySchemeType.OAUTH2,
-        in = SecuritySchemeIn.HEADER,
-        flows = @OAuthFlows(
-                implicit = @OAuthFlow(authorizationUrl = "http://url.com/auth",
-                        scopes = @OAuthScope(name = "write:pets", description = "modify pets in your account"))))
-@SecurityScheme(name = "apiKey", type = SecuritySchemeType.APIKEY, in = SecuritySchemeIn.HEADER, paramName = "API_KEY")
+@SecurityScheme(name = "apiKey", type = SecuritySchemeType.APIKEY, in = SecuritySchemeIn.COOKIE, paramName = "jwt")
 public class OpenApiConfig {
 
     /**

@@ -33,28 +33,30 @@ public class JwtSecurityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest requestServlet, HttpServletResponse responseServlet, Object handler) throws Exception
     {
-        HandlerMethod method = (HandlerMethod) handler;
-        Authorize authorizedRoles = method.getMethodAnnotation(Authorize.class);
-        if(authorizedRoles != null) {
-            DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-            String currentUserBeanKey = "currentUser";
-            Cookie[] cookies = requestServlet.getCookies();
-            Optional<Cookie> jwtCookie = Arrays.stream(cookies)
-                    .filter(cookie ->
-                            cookie.getName().equalsIgnoreCase("jwt")
-                    )
-                    .findFirst();
-            if(jwtCookie.isPresent()) {
-                String token = jwtCookie.get().getValue();
-                this._jwtSecurityService.validateToken(token);
-                UUID userUid = this._jwtSecurityService.getUserUidFromToken(token);
-                User user = this._userService.getUserByUUID(userUid);
-                beanFactory.registerSingleton(currentUserBeanKey, user);
-            } else {
-                beanFactory.destroySingleton(currentUserBeanKey);
-                throw new NotAuthorizedException("Unauthorized");
+        try {
+            HandlerMethod method = (HandlerMethod) handler;
+            Authorize authorizedRoles = method.getMethodAnnotation(Authorize.class);
+            if(authorizedRoles != null) {
+                DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+                String currentUserBeanKey = "currentUser";
+                Cookie[] cookies = requestServlet.getCookies();
+                Optional<Cookie> jwtCookie = Arrays.stream(cookies)
+                        .filter(cookie ->
+                                cookie.getName().equalsIgnoreCase("jwt")
+                        )
+                        .findFirst();
+                if(jwtCookie.isPresent()) {
+                    String token = jwtCookie.get().getValue();
+                    this._jwtSecurityService.validateToken(token);
+                    UUID userUid = this._jwtSecurityService.getUserUidFromToken(token);
+                    User user = this._userService.getUserByUUID(userUid);
+                    beanFactory.registerSingleton(currentUserBeanKey, user);
+                } else {
+                    beanFactory.destroySingleton(currentUserBeanKey);
+                    throw new NotAuthorizedException("Unauthorized");
+                }
             }
-        }
+        } catch (Exception ex) {}
         return true;
     }
 }
