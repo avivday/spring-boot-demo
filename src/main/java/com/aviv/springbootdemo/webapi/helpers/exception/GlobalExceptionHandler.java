@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
      */
     private Map<Class, ExceptionClassInfo> exceptionToInfo = new HashMap<>()
     {{
-        put(ForbiddenException.class, new ExceptionClassInfo(HttpStatus.FORBIDDEN, "Wrong user or password"));
+        put(ForbiddenException.class, new ExceptionClassInfo(HttpStatus.FORBIDDEN, "Access Forbidden"));
         put(NotAuthorizedException.class, new ExceptionClassInfo(HttpStatus.UNAUTHORIZED, "Unauthorized"));
         put(BindException.class, new ExceptionClassInfo(HttpStatus.UNPROCESSABLE_ENTITY, "Unprocessable Entity"));
         put(NotFoundException.class, new ExceptionClassInfo(HttpStatus.NOT_FOUND, "Record not found"));

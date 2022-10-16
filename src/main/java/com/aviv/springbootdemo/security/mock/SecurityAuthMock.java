@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.ForbiddenException;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Service
@@ -36,7 +38,9 @@ public class SecurityAuthMock implements ISecurityAuth {
 
     @Override
     public void validateUserRole(User user, String[] allowedRoles) {
-        // valid role on mock, no need to do anything
+        if(!Arrays.asList(allowedRoles).contains(user.getRole())) {
+            throw new ForbiddenException("Forbidden");
+        }
     }
 
     @Override
