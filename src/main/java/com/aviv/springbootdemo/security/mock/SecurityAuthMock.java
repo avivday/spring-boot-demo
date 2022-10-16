@@ -1,5 +1,6 @@
 package com.aviv.springbootdemo.security.mock;
 
+import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.security.contract.ISecurityAuth;
 import com.aviv.springbootdemo.service.user.implementation.UserService;
 import com.aviv.springbootdemo.webapi.AppSettings;
@@ -31,6 +32,11 @@ public class SecurityAuthMock implements ISecurityAuth {
     @Override
     public void validateToken(String token) {
         // token is valid on mock, no need to do anything
+    }
+
+    @Override
+    public void validateUserRole(User user, String[] allowedRoles) {
+        // valid role on mock, no need to do anything
     }
 
     @Override

@@ -8,9 +8,9 @@
 - application.properties to control each dao (choose mock or real for each data source you have)
 - Unit testing (running against mock)
 - Swagger (Auto generate docs using javadoc standard) - keep your code documented, document Interfaces & Controller
-
-## Future Features:
 - Secured Routes With Roles
+- 
+## Future Features:
 - Security headers
 - Integration Tests
 - Docker

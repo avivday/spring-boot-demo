@@ -54,6 +54,7 @@ public class JwtSecurityInterceptor implements HandlerInterceptor {
             this._securityAuth.validateToken(token);
             UUID userUid = this._securityAuth.getUserUidFromToken(token);
             User user = this._userService.getUserByUUID(userUid);
+            this._securityAuth.validateUserRole(user, authorizedRoles.value());
             beanFactory.registerSingleton(currentUserBeanKey, user);
         } else {
             beanFactory.destroySingleton(currentUserBeanKey);

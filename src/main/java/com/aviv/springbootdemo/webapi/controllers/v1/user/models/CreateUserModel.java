@@ -5,7 +5,6 @@ import com.aviv.springbootdemo.model.user.Gender;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
 
 public class CreateUserModel {
     /**
@@ -40,12 +39,18 @@ public class CreateUserModel {
     @Email
     private String email;
 
-    public CreateUserModel(String firstName, String lastName, Gender gender, Integer age, String email) {
+    /**
+     * User role
+     */
+    private String role;
+
+    public CreateUserModel(String firstName, String lastName, Gender gender, Integer age, String email, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
         this.email = email;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -66,5 +71,9 @@ public class CreateUserModel {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getRole() {
+        return this.role;
     }
 }

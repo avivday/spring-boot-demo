@@ -1,5 +1,6 @@
 package com.aviv.springbootdemo.security.implementation;
 
+import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.security.contract.ISecurityAuth;
 import com.aviv.springbootdemo.webapi.AppSettings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.ForbiddenException;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Service
@@ -41,6 +43,13 @@ public class SecurityAuth implements ISecurityAuth {
     @Override
     public void validateToken(String token) {
         this._jwtSecurity.validateToken(token);
+    }
+
+    @Override
+    public void validateUserRole(User user, String[] allowedRoles) {
+        if(!Arrays.asList(allowedRoles).contains(user.getRole())) {
+            throw new ForbiddenException("Forbidden");
+        }
     }
 
     @Override

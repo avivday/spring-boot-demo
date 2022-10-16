@@ -5,6 +5,7 @@ import com.aviv.springbootdemo.model.user.Gender;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
+import com.aviv.springbootdemo.webapi.security.AuthRoles;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.annotation.DirtiesContext;
@@ -52,7 +53,7 @@ class UserServiceTest {
     void updateUser() throws Exception {
         User user = this._userService.getAllUsers().get(0);
         User updatedUser = new User(
-                user.getUserUid(), user.getFirstName(), user.getLastName(), user.getGender(), 30, "updated@email.com");
+                user.getUserUid(), user.getFirstName(), user.getLastName(), user.getGender(), 30, "updated@email.com", AuthRoles.SUPER_ADMIN);
         this._userService.updateUser(updatedUser);
 
         assertThat(this._userService.getUserByUUID(user.getUserUid())).isEqualTo(updatedUser);
@@ -70,7 +71,7 @@ class UserServiceTest {
     @Test
     @DirtiesContext
     void insertUser() {
-        CreateUserModel user = new CreateUserModel("Jane", "Doe", Gender.FEMALE, 18, "jane@doe.com");
+        CreateUserModel user = new CreateUserModel("Jane", "Doe", Gender.FEMALE, 18, "jane@doe.com", AuthRoles.SUPER_ADMIN);
         User newUser = this._userService.insertUser(user);
 
         assertThat(newUser).isNotNull();

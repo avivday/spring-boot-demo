@@ -1,7 +1,6 @@
 package com.aviv.springbootdemo.model.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -49,19 +48,26 @@ public class User {
     @Email
     private final String email;
 
+    /**
+     * User role
+     */
+    private final String role;
+
     public User(
             @JsonProperty("userUid") UUID userUid,
             @JsonProperty("firstName") String firstName,
             @JsonProperty("lastName") String lastName,
             @JsonProperty("gender") Gender gender,
             @JsonProperty("age") Integer age,
-            @JsonProperty("email") String email) {
+            @JsonProperty("email") String email,
+            @JsonProperty("role") String role) {
         this.userUid = userUid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
         this.email = email;
+        this.role = role;
     }
 
     public UUID getUserUid() {
@@ -86,5 +92,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

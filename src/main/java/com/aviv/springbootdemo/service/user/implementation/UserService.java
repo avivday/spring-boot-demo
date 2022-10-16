@@ -51,7 +51,7 @@ public class UserService implements IUserService {
     @Override
     public User insertUser(CreateUserModel user) {
         UUID newUserUid = UUID.randomUUID();
-        User newUser = new User(newUserUid, user.getFirstName(), user.getLastName(), user.getGender(), user.getAge(), user.getEmail());
+        User newUser = new User(newUserUid, user.getFirstName(), user.getLastName(), user.getGender(), user.getAge(), user.getEmail(), user.getRole());
         this._userDao.insertUser(newUserUid, newUser);
         return newUser;
     }

@@ -3,6 +3,7 @@ package com.aviv.springbootdemo.dao.postgres.implementation.user;
 import com.aviv.springbootdemo.dao.postgres.contract.user.IUserDao;
 import com.aviv.springbootdemo.model.user.Gender;
 import com.aviv.springbootdemo.model.user.User;
+import com.aviv.springbootdemo.webapi.security.AuthRoles;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -22,7 +23,7 @@ public class UserDao implements IUserDao {
         // inject and use your own database, for now we will add "real" data here manually.
         this._realData = new HashMap<>();
         UUID userUUID = UUID.fromString("3091c093-803b-437f-9571-10791f35b4f1");
-        this._realData.put(userUUID, new User(userUUID, "Aviv", "Day", Gender.MALE, 22, "avivday@gmail.com"));
+        this._realData.put(userUUID, new User(userUUID, "Aviv", "Day", Gender.MALE, 22, "avivday@gmail.com", AuthRoles.SUPER_ADMIN));
     }
 
     @Override

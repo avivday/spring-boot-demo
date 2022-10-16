@@ -3,7 +3,7 @@ package com.aviv.springbootdemo.dao.postgres.mock.user;
 import com.aviv.springbootdemo.dao.postgres.contract.user.IUserDao;
 import com.aviv.springbootdemo.model.user.Gender;
 import com.aviv.springbootdemo.model.user.User;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import com.aviv.springbootdemo.webapi.security.AuthRoles;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +17,10 @@ public class UserDaoMock implements IUserDao {
 
     static {
         fakeData = new HashMap<>();
-        UUID userUUID = UUID.fromString("15001508-e4d2-4fd9-9fa8-91dd89c17373");
-        fakeData.put(userUUID, new User(userUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com"));
+        UUID superAdminUUID = UUID.fromString("15001508-e4d2-4fd9-9fa8-91dd89c17373");
+        fakeData.put(superAdminUUID, new User(superAdminUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com", AuthRoles.SUPER_ADMIN));
+        UUID adminUUID = UUID.fromString("c54cb992-011f-49a4-a240-c41949862488");
+        fakeData.put(adminUUID, new User(adminUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com", AuthRoles.ADMIN));
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.aviv.springbootdemo.service.user.contract.IUserService;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import com.aviv.springbootdemo.webapi.security.AuthRoles;
 import com.aviv.springbootdemo.webapi.security.Authorize;
+import com.github.therapi.runtimejavadoc.repack.com.eclipsesource.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,6 @@ public class UserController {
      * @param userUid user identifier
      * @return User
      */
-    @Authorize(AuthRoles.ADMIN)
     @RequestMapping(path = "{userUid}", method = RequestMethod.GET)
     public User getUserByUid(@PathVariable("userUid") UUID userUid) throws Exception {
         return this._userService.getUserByUUID(userUid);
@@ -78,8 +78,13 @@ public class UserController {
         this._userService.removeUserByUUID(userUid);
     }
 
+    /**
+     * This is a protected route as an example only
+     * @return First user from the list of users (Example)
+     */
+    @Authorize(AuthRoles.SUPER_ADMIN)
     @RequestMapping(path = "/special", method = RequestMethod.GET)
-    public User special() {
+    public User adminOnlyRoute() {
         // some special magic here
         return this._userService.getAllUsers().get(0);
     }
