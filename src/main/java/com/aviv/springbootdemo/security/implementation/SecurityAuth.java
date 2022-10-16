@@ -34,6 +34,7 @@ public class SecurityAuth implements ISecurityAuth {
 
         String userUid = "3091c093-803b-437f-9571-10791f35b4f1";
         Cookie jwtCookie = new Cookie(this._appSettings.getJwtCookieName(), this._jwtSecurity.generateToken(userUid));
+        jwtCookie.setHttpOnly(true);
         response.addCookie(jwtCookie);
     }
 
