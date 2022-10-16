@@ -37,7 +37,7 @@ public class JwtSecurityService implements IJwtSecurityService {
                 .setSubject(subject)
                 .setIssuedAt(currentDate)
                 .setExpiration(expiredDate)
-                .signWith(SignatureAlgorithm.HS512,this.appSettings.getJwtSecret())
+                .signWith(SignatureAlgorithm.HS256, this.appSettings.getJwtSecret())
                 .compact();
 
         return token;

@@ -34,7 +34,6 @@ public class UserController {
      * Get all users
      * @return List of users
      */
-    @Authorize(AuthRoles.ADMIN)
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return this._userService.getAllUsers();
@@ -45,6 +44,7 @@ public class UserController {
      * @param userUid user identifier
      * @return User
      */
+    @Authorize(AuthRoles.ADMIN)
     @RequestMapping(path = "{userUid}", method = RequestMethod.GET)
     public User getUserByUid(@PathVariable("userUid") UUID userUid) throws Exception {
         return this._userService.getUserByUUID(userUid);
