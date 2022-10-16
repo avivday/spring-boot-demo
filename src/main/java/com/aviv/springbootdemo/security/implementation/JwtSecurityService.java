@@ -47,14 +47,12 @@ public class JwtSecurityService {
         return UUID.fromString(claims.getSubject());
     }
 
-    public boolean validateToken(String token) {
+    public void validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(this.appSettings.getJwtSecret()).parseClaimsJws(token);
         } catch (SignatureException ex) {
             throw new NotAuthorizedException(ex);
         }
-
-        return true;
     }
 
     private Claims _getTokenClaims(String token) {

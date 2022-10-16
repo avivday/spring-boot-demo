@@ -17,7 +17,7 @@ public class UserDaoMock implements IUserDao {
 
     static {
         fakeData = new HashMap<>();
-        UUID userUUID = UUID.randomUUID();
+        UUID userUUID = UUID.fromString("15001508-e4d2-4fd9-9fa8-91dd89c17373");
         fakeData.put(userUUID, new User(userUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com"));
     }
 
