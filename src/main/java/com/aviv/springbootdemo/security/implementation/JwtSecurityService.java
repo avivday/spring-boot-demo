@@ -1,7 +1,6 @@
-package com.aviv.springbootdemo.security.jwt.implementation;
+package com.aviv.springbootdemo.security.implementation;
 
 import com.aviv.springbootdemo.model.user.User;
-import com.aviv.springbootdemo.security.jwt.contract.IJwtSecurityService;
 import com.aviv.springbootdemo.webapi.AppSettings;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,7 +18,7 @@ import java.util.UUID;
 @Service
 @Primary
 @ConditionalOnProperty(prefix = "app.settings.security.jwt", name = "mock", havingValue = "false")
-public class JwtSecurityService implements IJwtSecurityService {
+public class JwtSecurityService {
 
     private AppSettings appSettings;
     private User _currentUser;
@@ -29,12 +28,12 @@ public class JwtSecurityService implements IJwtSecurityService {
         this.appSettings = appSettings;
     }
 
-    public String generateToken(String subject) {
+    public String generateToken(String userUid) {
         Date currentDate = new Date();
         Date expiredDate = new Date(currentDate.getTime() + this.appSettings.getJwtExpirationInMs());
 
         String token = Jwts.builder()
-                .setSubject(subject)
+                .setSubject(userUid)
                 .setIssuedAt(currentDate)
                 .setExpiration(expiredDate)
                 .signWith(SignatureAlgorithm.HS256, this.appSettings.getJwtSecret())
@@ -57,7 +56,6 @@ public class JwtSecurityService implements IJwtSecurityService {
 
         return true;
     }
-
 
     private Claims _getTokenClaims(String token) {
         return Jwts.parser()

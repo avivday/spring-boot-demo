@@ -2,10 +2,9 @@ package com.aviv.springbootdemo.webapi.security;
 
 
 import com.aviv.springbootdemo.model.user.User;
-import com.aviv.springbootdemo.security.jwt.contract.IJwtSecurityService;
+import com.aviv.springbootdemo.security.contract.ISecurityAuth;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
-import com.aviv.springbootdemo.webapi.security.Authorize;
-import org.springframework.beans.factory.BeanFactory;
+import com.aviv.springbootdemo.webapi.AppSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.web.method.HandlerMethod;
@@ -21,42 +20,45 @@ import java.util.UUID;
 
 public class JwtSecurityInterceptor implements HandlerInterceptor {
 
-    private IJwtSecurityService _jwtSecurityService;
     private IUserService _userService;
+    private ISecurityAuth _securityAuth;
+    private AppSettings _appSettings;
 
     @Autowired
-    public JwtSecurityInterceptor(IJwtSecurityService jwtSecurityService, IUserService userService) {
-        this._jwtSecurityService = jwtSecurityService;
+    public JwtSecurityInterceptor(IUserService userService, ISecurityAuth securityAuth, AppSettings appSettings) {
         this._userService = userService;
+        this._securityAuth = securityAuth;
+        this._appSettings = appSettings;
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest requestServlet, HttpServletResponse responseServlet, Object handler) throws Exception
-    {
-        try {
-            HandlerMethod method = (HandlerMethod) handler;
-            Authorize authorizedRoles = method.getMethodAnnotation(Authorize.class);
-            if(authorizedRoles != null) {
-                DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
-                String currentUserBeanKey = "currentUser";
-                Cookie[] cookies = requestServlet.getCookies();
-                Optional<Cookie> jwtCookie = Arrays.stream(cookies)
-                        .filter(cookie ->
-                                cookie.getName().equalsIgnoreCase("jwt")
-                        )
-                        .findFirst();
-                if(jwtCookie.isPresent()) {
-                    String token = jwtCookie.get().getValue();
-                    this._jwtSecurityService.validateToken(token);
-                    UUID userUid = this._jwtSecurityService.getUserUidFromToken(token);
-                    User user = this._userService.getUserByUUID(userUid);
-                    beanFactory.registerSingleton(currentUserBeanKey, user);
-                } else {
-                    beanFactory.destroySingleton(currentUserBeanKey);
-                    throw new NotAuthorizedException("Unauthorized");
-                }
-            }
-        } catch (Exception ex) {}
+    public boolean preHandle(HttpServletRequest requestServlet, HttpServletResponse responseServlet, Object handler) throws Exception {
+        HandlerMethod method = (HandlerMethod) handler;
+        Authorize authorizedRoles = method.getMethodAnnotation(Authorize.class);
+
+        if (authorizedRoles == null) return true; // route is not secured.
+
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        String currentUserBeanKey = "currentUser";
+        Cookie[] cookies = requestServlet.getCookies();
+        if(cookies == null || cookies.length == 0) throw new NotAuthorizedException("Unauthorized");
+
+        Optional<Cookie> jwtCookie = Arrays.stream(cookies)
+                .filter(cookie ->
+                        cookie.getName().equalsIgnoreCase(this._appSettings.getJwtCookieName())
+                )
+                .findFirst();
+
+        if (jwtCookie.isPresent()) {
+            String token = jwtCookie.get().getValue();
+            this._securityAuth.validateToken(token);
+            UUID userUid = this._securityAuth.getUserUidFromToken(token);
+            User user = this._userService.getUserByUUID(userUid);
+            beanFactory.registerSingleton(currentUserBeanKey, user);
+        } else {
+            beanFactory.destroySingleton(currentUserBeanKey);
+            throw new NotAuthorizedException("Unauthorized");
+        }
         return true;
     }
 }

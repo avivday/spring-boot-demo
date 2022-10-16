@@ -16,6 +16,9 @@ public class AppSettings {
     @Value("${app.settings.security.jwt.expiration-milliseconds}")
     private int jwtExpirationInMs;
 
+    @Value("${app.settings.security.jwt.cookie-name}")
+    private String jwtCookieName;
+
     public boolean showDetailedExceptions() {
         return this.detailedExceptions;
     }
@@ -26,5 +29,9 @@ public class AppSettings {
 
     public int getJwtExpirationInMs() {
         return this.jwtExpirationInMs;
+    }
+
+    public String getJwtCookieName() {
+        return this.jwtCookieName;
     }
 }
