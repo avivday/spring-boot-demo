@@ -21,7 +21,7 @@ public class UserDao implements IUserDao {
     public UserDao() {
         // inject and use your own database, for now we will add "real" data here manually.
         this._realData = new HashMap<>();
-        UUID userUUID = UUID.randomUUID();
+        UUID userUUID = UUID.fromString("3091c093-803b-437f-9571-10791f35b4f1");
         this._realData.put(userUUID, new User(userUUID, "Aviv", "Day", Gender.MALE, 22, "avivday@gmail.com"));
     }
 

@@ -54,8 +54,6 @@ public class JwtSecurityInterceptor implements HandlerInterceptor {
                 beanFactory.destroySingleton(currentUserBeanKey);
                 throw new NotAuthorizedException("Unauthorized");
             }
-//            && cookie.isHttpOnly()
-            int x = 5;
         }
         return true;
     }
