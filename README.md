@@ -3,14 +3,17 @@
 
 ## Includes:
 - n-tier layers: Models, Dao, Service & Web API as default layers.
+- Extra layer: security. Seperated from services to be able to mock security
 - Dao & Services exposed using interfaces, keeping everything decoupled and clean.
 - Mocking for DAO
 - application.properties to control each dao (choose mock or real for each data source you have)
-- Unit testing (running against mock)
-- Swagger (Auto generate docs using javadoc standard) - keep your code documented, document Interfaces & Controller
+- Unit testing with JUnit
+- Swagger UI (Auto generate docs using javadoc standard) - keep your code documented, document Interfaces & Controller
 - Secured Routes With Roles
-- 
-## Future Features:
+
+## Coming up tasks:
+- Add tests for security layer
+## Coming up features:
 - Security headers
 - Integration Tests
 - Docker
@@ -27,6 +30,9 @@
 ```bash
 ./mvnw spring-boot:run
 ```
+
+5. API is available on `http://localhost:8080` by default
+6. Swagger access is granted by `http://localhost:8080/swagger`
 
 # Build
 * Run `./mvnw package` inside the root folder to build executable jar
