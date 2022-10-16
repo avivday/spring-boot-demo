@@ -3,6 +3,8 @@ package com.aviv.springbootdemo.webapi.controllers.v1.user;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
+import com.aviv.springbootdemo.webapi.security.AuthRoles;
+import com.aviv.springbootdemo.webapi.security.Authorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,7 @@ public class UserController {
      * Get all users
      * @return List of users
      */
+    @Authorize(AuthRoles.ADMIN)
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return this._userService.getAllUsers();

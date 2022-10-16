@@ -1,17 +1,15 @@
 package com.aviv.springbootdemo.security.jwt.contract;
 
-import org.springframework.security.core.Authentication;
-
 import java.util.UUID;
 
 public interface IJwtSecurityService {
 
     /**
      * Generate token
-     * @param authentication
+     * @param subject - the token subject (username, id, etc...)
      * @return JWT Token
      */
-    String generateToken(Authentication authentication);
+    String generateToken(String subject);
 
     /**
      * Get user uid (subject claim) from token

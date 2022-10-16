@@ -1,15 +1,16 @@
 package com.aviv.springbootdemo.security.jwt.mock;
 
 import com.aviv.springbootdemo.security.jwt.contract.IJwtSecurityService;
-import org.springframework.security.core.Authentication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
+@ConditionalOnProperty(prefix = "app.settings.security.jwt", name = "mock", havingValue = "true")
 public class JwtSecurityServiceMock implements IJwtSecurityService {
     @Override
-    public String generateToken(Authentication authentication) {
+    public String generateToken(String subject) {
         return "mock.jwt.fake";
     }
 

@@ -10,10 +10,10 @@ public class AppSettings {
     @Value("${app.settings.exceptions.detail}")
     private boolean detailedExceptions;
 
-    @Value("${app.settings.jwt.secret}")
+    @Value("${app.settings.security.jwt.secret}")
     private String jwtSecret;
 
-    @Value("${app.settings.jwt.expiration-milliseconds}")
+    @Value("${app.settings.security.jwt.expiration-milliseconds}")
     private int jwtExpirationInMs;
 
     public boolean showDetailedExceptions() {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.NotFoundException;
 import java.util.Arrays;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class GlobalExceptionHandler {
      */
     private Map<Class, ExceptionClassInfo> exceptionToInfo = new HashMap<>()
     {{
+        put(NotAuthorizedException.class, new ExceptionClassInfo(HttpStatus.UNAUTHORIZED, "Unauthorized"));
         put(BindException.class, new ExceptionClassInfo(HttpStatus.UNPROCESSABLE_ENTITY, "Unprocessable Entity"));
         put(NotFoundException.class, new ExceptionClassInfo(HttpStatus.NOT_FOUND, "Record not found"));
         put(MethodArgumentTypeMismatchException.class, new ExceptionClassInfo(HttpStatus.BAD_REQUEST, "Bad Request"));
@@ -35,7 +37,6 @@ public class GlobalExceptionHandler {
     public GlobalExceptionHandler(AppSettings appSettings) {
         this.appSettings = appSettings;
     }
-
 
     /**
      * Handle global exceptions according to env vars and exception mapping
@@ -63,4 +64,5 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(exceptionDetails, exceptionClassInfo.getStatus());
     }
+
 }
