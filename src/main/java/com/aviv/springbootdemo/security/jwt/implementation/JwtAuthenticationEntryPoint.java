@@ -1,4 +1,4 @@
-package com.aviv.springbootdemo.webapi.security.jwt;
+package com.aviv.springbootdemo.security.jwt.implementation;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

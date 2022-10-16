@@ -28,8 +28,12 @@ public class UserService implements IUserService {
 
     @Override
     public User getUserByUUID(UUID userUid) throws Exception {
-        User user = this._userDao.getUserByUUID(userUid);
-        if(user == null) throw new NotFoundException("test");
+        User user;
+        try {
+            user = this._userDao.getUserByUUID(userUid);
+        } catch (Exception ex) {
+            throw new NotFoundException("User not found");
+        }
 
         return user;
     }
