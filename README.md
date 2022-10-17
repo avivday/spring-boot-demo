@@ -12,13 +12,14 @@
 - Secured Routes With Roles
 
 ## Coming up features:
-- Security headers
+- Security headers and api throttle
 - Integration Tests
-- Docker
+- Add docker compose
 
 ## Open issues
 - Post, Put, Remove - test and make it work better
-- Test security service
+- Add swagger schema examples
+- Add unit tests for the brand-new security service
 
 # Prerequisite
 - Make sure you have java installed
