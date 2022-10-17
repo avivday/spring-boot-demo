@@ -11,12 +11,14 @@
 - Swagger UI (Auto generate docs using javadoc standard) - keep your code documented, document Interfaces & Controller
 - Secured Routes With Roles
 
-## Coming up tasks:
-- Add tests for security layer
 ## Coming up features:
 - Security headers
 - Integration Tests
 - Docker
+
+## Open issues
+- Post, Put, Remove - test and make it work better
+- Test security service
 
 # Prerequisite
 - Make sure you have java installed
