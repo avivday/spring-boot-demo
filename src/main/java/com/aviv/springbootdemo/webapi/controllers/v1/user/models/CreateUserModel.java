@@ -1,16 +1,19 @@
 package com.aviv.springbootdemo.webapi.controllers.v1.user.models;
 
 import com.aviv.springbootdemo.model.user.Gender;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 public class CreateUserModel {
 
     /**
      * Username
      */
+    @NotNull
     public String username;
 
     /**
@@ -48,9 +51,17 @@ public class CreateUserModel {
     /**
      * User role
      */
+    @NotNull
     private String role;
 
-    public CreateUserModel(String username, String firstName, String lastName, Gender gender, Integer age, String email, String role) {
+    public CreateUserModel(
+            @JsonProperty("username") String username,
+            @JsonProperty("firstName") String firstName,
+            @JsonProperty("lastName") String lastName,
+            @JsonProperty("gender") Gender gender,
+            @JsonProperty("age") Integer age,
+            @JsonProperty("email") String email,
+            @JsonProperty("role") String role) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -86,5 +97,33 @@ public class CreateUserModel {
 
     public String getRole() {
         return this.role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

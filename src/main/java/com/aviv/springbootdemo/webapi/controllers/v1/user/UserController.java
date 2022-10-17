@@ -57,7 +57,7 @@ public class UserController {
      */
     @RequestMapping(path = "", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void insertUser(@Valid CreateUserModel user) {
+    public void insertUser(CreateUserModel user) {
         this._userService.insertUser(user);
     }
 
@@ -83,12 +83,23 @@ public class UserController {
     }
 
     /**
-     * This is a protected route as an example only
+     * This is a protected route ADMIN, SUPER_ADMIN Only.
+     * @return First user from the list of users (Example)
+     */
+    @Authorize({AuthRoles.ADMIN, AuthRoles.SUPER_ADMIN})
+    @RequestMapping(path = "/admin", method = RequestMethod.GET)
+    public User adminOnlyRoute() {
+        // some special magic here
+        return this._userService.getAllUsers().get(0);
+    }
+
+    /**
+     * This is a protected route SUPER_ADMIN ONLY
      * @return First user from the list of users (Example)
      */
     @Authorize(AuthRoles.SUPER_ADMIN)
-    @RequestMapping(path = "/special", method = RequestMethod.GET)
-    public User adminOnlyRoute() {
+    @RequestMapping(path = "/super-admin", method = RequestMethod.GET)
+    public User superAdminOnlyRoute() {
         // some special magic here
         return this._userService.getAllUsers().get(0);
     }
