@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Authentication Controller
+ */
 @RestController()
 @RequestMapping(
         path = "/api/v1/auth"
@@ -27,6 +30,7 @@ public class AuthController {
      * Authenticate
      * Implement your own authenticate, as an example only. user: user, password: 1234
      */
+
     @RequestMapping(path = "", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void login(AuthUser authUser, HttpServletResponse response) {
