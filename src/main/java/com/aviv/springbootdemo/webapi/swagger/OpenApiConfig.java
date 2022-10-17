@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(servers = { @Server(url = "http://localhost:8080") }, info = @Info(title = "Your API Title", description = "Small api description"))
-@SecurityScheme(name = "apiKey", type = SecuritySchemeType.APIKEY, in = SecuritySchemeIn.COOKIE, paramName = "jwt")
 public class OpenApiConfig {
 
     /**
