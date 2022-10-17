@@ -7,6 +7,7 @@ import com.aviv.springbootdemo.webapi.security.AuthRoles;
 import com.aviv.springbootdemo.webapi.security.Authorize;
 import com.github.therapi.runtimejavadoc.repack.com.eclipsesource.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,17 +56,19 @@ public class UserController {
      * @param user user to insert
      */
     @RequestMapping(path = "", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void insertUser(@Valid CreateUserModel user) {
         this._userService.insertUser(user);
     }
 
     /**
      * Update user
-     * @param userUid user identifier to update
+     * @param username
      * @param user User to update
      */
-    @RequestMapping(path = "{userUid}", method = RequestMethod.PUT)
-    public void updateUser(@PathVariable("userUid") UUID userUid, User user) {
+    @RequestMapping(path = "{username}", method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateUser(@PathVariable("username") String username, User user) {
         this._userService.updateUser(user);
     }
 
@@ -74,6 +77,7 @@ public class UserController {
      * @param username username
      */
     @RequestMapping(path = "{username}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void removeUser(@PathVariable("username") String username) {
         this._userService.removeUser(username);
     }
