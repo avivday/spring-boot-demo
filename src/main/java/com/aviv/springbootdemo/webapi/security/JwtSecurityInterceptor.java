@@ -52,8 +52,9 @@ public class JwtSecurityInterceptor implements HandlerInterceptor {
         if (jwtCookie.isPresent()) {
             String token = jwtCookie.get().getValue();
             this._securityAuth.validateToken(token);
-            UUID userUid = this._securityAuth.getUserUidFromToken(token);
-            User user = this._userService.getUserByUUID(userUid);
+            String username = this._securityAuth.getUsernameFromToken(token);
+            User user = this._userService.getUserByUsername(username);
+            if(user == null) throw new NotAuthorizedException("Unauthorized");
             this._securityAuth.validateUserRole(user, authorizedRoles.value());
             beanFactory.registerSingleton(currentUserBeanKey, user);
         } else {

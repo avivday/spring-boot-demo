@@ -15,11 +15,11 @@ public interface IUserService {
     List<User> getAllUsers();
 
     /**
-     * Get user by user UUID
-     * @param userUid - requested user UUID
-     * @return User
+     * Get user by username
+     * @param username - username
+     * @return Requested user
      */
-    User getUserByUUID(UUID userUid) throws Exception;
+    User getUserByUsername(String username);
 
     /**
      * Update user
@@ -28,10 +28,10 @@ public interface IUserService {
     void updateUser(User user);
 
     /**
-     * Remove user by UUID
+     * Remove user
      * @param userUid - requested user UUID
      */
-    void removeUserByUUID(UUID userUid);
+    void removeUser(String username);
 
     /**
      * Create a new user

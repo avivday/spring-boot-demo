@@ -16,6 +16,11 @@ public class User {
     private final UUID userUid;
 
     /**
+     * Username
+     */
+    private final String username;
+
+    /**
      * First name
      */
     @NotNull
@@ -55,6 +60,7 @@ public class User {
 
     public User(
             @JsonProperty("userUid") UUID userUid,
+            @JsonProperty("username") String username,
             @JsonProperty("firstName") String firstName,
             @JsonProperty("lastName") String lastName,
             @JsonProperty("gender") Gender gender,
@@ -62,6 +68,7 @@ public class User {
             @JsonProperty("email") String email,
             @JsonProperty("role") String role) {
         this.userUid = userUid;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -72,6 +79,10 @@ public class User {
 
     public UUID getUserUid() {
         return userUid;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getFirstName() {

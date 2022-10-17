@@ -3,6 +3,7 @@ package com.aviv.springbootdemo.service.user.implementation;
 import com.aviv.springbootdemo.dao.postgres.contract.user.IUserDao;
 import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.service.user.contract.IUserService;
+import com.aviv.springbootdemo.webapi.AppContext;
 import com.aviv.springbootdemo.webapi.controllers.v1.user.models.CreateUserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,12 @@ import java.util.UUID;
 public class UserService implements IUserService {
 
     private final IUserDao _userDao;
+    private AppContext appContext;
 
     @Autowired
-    public UserService(IUserDao userDao) {
+    public UserService(IUserDao userDao, AppContext appContext) {
         this._userDao = userDao;
+        this.appContext = appContext;
     }
 
     @Override
@@ -27,12 +30,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserByUUID(UUID userUid) throws Exception {
+    public User getUserByUsername(String username) {
         User user;
         try {
-            user = this._userDao.getUserByUUID(userUid);
+            user = this._userDao.getUserByUsername(username);
         } catch (Exception ex) {
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(ex);
         }
 
         return user;
@@ -44,15 +47,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void removeUserByUUID(UUID userUid) {
-        this._userDao.removeUserByUUID(userUid);
+    public void removeUser(String username) {
+        this._userDao.removeUser(username);
     }
 
     @Override
     public User insertUser(CreateUserModel user) {
-        UUID newUserUid = UUID.randomUUID();
-        User newUser = new User(newUserUid, user.getFirstName(), user.getLastName(), user.getGender(), user.getAge(), user.getEmail(), user.getRole());
-        this._userDao.insertUser(newUserUid, newUser);
+        User newUser = new User(UUID.randomUUID(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getGender(), user.getAge(), user.getEmail(), user.getRole());
+        this._userDao.insertUser(newUser);
+
         return newUser;
     }
 }

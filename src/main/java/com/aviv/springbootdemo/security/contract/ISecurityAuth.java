@@ -11,11 +11,12 @@ public interface ISecurityAuth {
     /**
      * Login
      *
-     * @param user
+     * @param username
      * @param password
      * @param response
+     * @return Logged in user
      */
-    void login(String user, String password, HttpServletResponse response);
+    User login(String username, String password, HttpServletResponse response);
 
     /**
      * Validates JWT Token
@@ -30,9 +31,9 @@ public interface ISecurityAuth {
     void validateUserRole(User user, String[] allowedRoles);
 
     /**
-     * Get user identifier from the token
+     * Get username from the token
      * @param token
-     * @return user identifier (UUID)
+     * @return username
      */
-    UUID getUserUidFromToken(String token);
+    String getUsernameFromToken(String token);
 }

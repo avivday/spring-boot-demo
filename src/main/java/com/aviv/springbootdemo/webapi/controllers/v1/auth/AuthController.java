@@ -1,5 +1,6 @@
 package com.aviv.springbootdemo.webapi.controllers.v1.auth;
 
+import com.aviv.springbootdemo.model.user.User;
 import com.aviv.springbootdemo.security.contract.ISecurityAuth;
 import com.aviv.springbootdemo.webapi.controllers.v1.auth.models.AuthUser;
 import org.springframework.web.bind.annotation.RequestMapping;

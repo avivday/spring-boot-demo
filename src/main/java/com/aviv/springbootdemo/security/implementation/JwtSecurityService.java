@@ -16,12 +16,9 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-@Primary
-@ConditionalOnProperty(prefix = "app.settings.security.jwt", name = "mock", havingValue = "false")
 public class JwtSecurityService {
 
     private AppSettings appSettings;
-    private User _currentUser;
 
     @Autowired
     public JwtSecurityService(AppSettings appSettings) {
@@ -42,9 +39,9 @@ public class JwtSecurityService {
         return token;
     }
 
-    public UUID getUserUidFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         Claims claims = this._getTokenClaims(token);
-        return UUID.fromString(claims.getSubject());
+        return claims.getSubject();
     }
 
     public void validateToken(String token) {

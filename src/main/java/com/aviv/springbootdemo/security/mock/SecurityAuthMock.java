@@ -12,23 +12,28 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.ForbiddenException;
 import java.util.Arrays;
-import java.util.UUID;
 
 @Service
 @ConditionalOnProperty(prefix = "app.settings.security.auth", name = "mock", havingValue = "true")
 public class SecurityAuthMock implements ISecurityAuth {
 
     private AppSettings _appSettings;
+    private UserService _userService;
 
     @Autowired
-    public SecurityAuthMock(AppSettings _appSettings) {
+    public SecurityAuthMock(AppSettings _appSettings, UserService userService) {
         this._appSettings = _appSettings;
+        this._userService = userService;
     }
 
     @Override
-    public void login(String user, String password, HttpServletResponse response) {
-        Cookie cookie = new Cookie(this._appSettings.getJwtCookieName(), "fake.jwt.cookie");
+    public User login(String username, String password, HttpServletResponse response) {
+        // user is super_admin, ticket is valid until 2498
+        String mockedJwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2Vkb2UiLCJpYXQiOjE2NjU5MjYzMjIsImV4cCI6MTY2NjUzMTEyMjJ9.TeUJZuW3pSCkh4epQnFELpPAvN4f1pG5WQUPOeNXlyY";
+        Cookie cookie = new Cookie(this._appSettings.getJwtCookieName(), mockedJwt);
         response.addCookie(cookie);
+
+        return this._userService.getUserByUsername(username);
     }
 
     @Override
@@ -44,7 +49,7 @@ public class SecurityAuthMock implements ISecurityAuth {
     }
 
     @Override
-    public UUID getUserUidFromToken(String token) {
-        return UUID.fromString("15001508-e4d2-4fd9-9fa8-91dd89c17373");
+    public String getUsernameFromToken(String token) {
+        return "joedoe";
     }
 }

@@ -12,13 +12,12 @@ public interface IUserDao {
      */
     List<User> getAllUsers();
 
-
     /**
-     *
-     * @param userUid
-     * @return
+     * Get user by username
+     * @param username - username
+     * @return Requested user
      */
-    User getUserByUUID(UUID userUid);
+    User getUserByUsername(String username);
 
     /**
      * Update user
@@ -28,13 +27,13 @@ public interface IUserDao {
 
     /**
      * Remove user by UUID
-     * @param userUid - requested user UUID
+     * @param username - requested user UUID
      */
-    void removeUserByUUID(UUID userUid);
+    void removeUser(String username);
 
     /**
      * Create a new user
      * @param user new user to add
      */
-    void insertUser(UUID userUid, User user);
+    void insertUser(User user);
 }

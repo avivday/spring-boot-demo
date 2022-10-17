@@ -17,13 +17,13 @@ public class UserDao implements IUserDao {
 
     // real implementation, connect to your db and return real data.
     // For the example, we say we use postgres and we will return "real" data.
-    private static Map<UUID, User> _realData;
+    private static Map<String, User> _realData;
 
     public UserDao() {
         // inject and use your own database, for now we will add "real" data here manually.
         this._realData = new HashMap<>();
-        UUID userUUID = UUID.fromString("3091c093-803b-437f-9571-10791f35b4f1");
-        this._realData.put(userUUID, new User(userUUID, "Aviv", "Day", Gender.MALE, 22, "avivday@gmail.com", AuthRoles.SUPER_ADMIN));
+        String username = "avivday";
+        this._realData.put(username, new User(UUID.randomUUID(), username, "Aviv", "Day", Gender.MALE, 22, "avivday@gmail.com", AuthRoles.SUPER_ADMIN));
     }
 
     @Override
@@ -32,22 +32,22 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public User getUserByUUID(UUID userUid) {
-        return this._realData.get(userUid);
+    public User getUserByUsername(String username) {
+        return this._realData.get(username);
     }
 
     @Override
     public void updateUser(User user) {
-        this._realData.put(user.getUserUid(), user);
+        this._realData.put(user.getUsername(), user);
     }
 
     @Override
-    public void removeUserByUUID(UUID userUid) {
-        this._realData.remove(userUid);
+    public void removeUser(String username) {
+        this._realData.remove(username);
     }
 
     @Override
-    public void insertUser(UUID userUid, User user) {
-        this._realData.put(userUid, user);
+    public void insertUser(User user) {
+        this._realData.put(user.getUsername(), user);
     }
 }

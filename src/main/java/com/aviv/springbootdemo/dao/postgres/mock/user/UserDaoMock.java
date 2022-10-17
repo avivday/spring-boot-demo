@@ -13,14 +13,11 @@ import java.util.*;
 @ConditionalOnProperty(prefix = "app.settings.dao.postgres", name = "mock", havingValue = "true")
 public class UserDaoMock implements IUserDao {
 
-    private static Map<UUID, User> fakeData;
+    private static Map<String, User> fakeData;
 
     static {
         fakeData = new HashMap<>();
-        UUID superAdminUUID = UUID.fromString("15001508-e4d2-4fd9-9fa8-91dd89c17373");
-        fakeData.put(superAdminUUID, new User(superAdminUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com", AuthRoles.SUPER_ADMIN));
-        UUID adminUUID = UUID.fromString("c54cb992-011f-49a4-a240-c41949862488");
-        fakeData.put(adminUUID, new User(adminUUID, "Joe", "Doe", Gender.MALE, 22, "joe@doe.com", AuthRoles.ADMIN));
+        fakeData.put("joedoe", new User(UUID.randomUUID(), "joedoe", "Joe", "Doe", Gender.MALE, 22, "joe@doe.com", AuthRoles.SUPER_ADMIN));
     }
 
     @Override
@@ -29,22 +26,22 @@ public class UserDaoMock implements IUserDao {
     }
 
     @Override
-    public User getUserByUUID(UUID userUid) {
-        return fakeData.get(userUid);
+    public User getUserByUsername(String username) {
+        return this.fakeData.get(username);
     }
 
     @Override
     public void updateUser(User user) {
-        fakeData.put(user.getUserUid(), user);
+        fakeData.put(user.getUsername(), user);
     }
 
     @Override
-    public void removeUserByUUID(UUID userUid) {
-        fakeData.remove(userUid);
+    public void removeUser(String username) {
+        fakeData.remove(username);
     }
 
     @Override
-    public void insertUser(UUID userUid, User user) {
-        fakeData.put(userUid, user);
+    public void insertUser(User user) {
+        fakeData.put(user.getUsername(), user);
     }
 }

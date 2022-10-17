@@ -41,13 +41,13 @@ public class UserController {
     }
 
     /**
-     * Get user by uid
-     * @param userUid user identifier
+     * Get user by username
+     * @param username username
      * @return User
      */
-    @RequestMapping(path = "{userUid}", method = RequestMethod.GET)
-    public User getUserByUid(@PathVariable("userUid") UUID userUid) throws Exception {
-        return this._userService.getUserByUUID(userUid);
+    @RequestMapping(path = "{username}", method = RequestMethod.GET)
+    public User getUserByUsername(@PathVariable("username") String username) throws Exception {
+        return this._userService.getUserByUsername(username);
     }
 
     /**
@@ -71,11 +71,11 @@ public class UserController {
 
     /**
      * Remove user
-     * @param userUid user identifier to delete
+     * @param username username
      */
-    @RequestMapping(path = "{userUid}", method = RequestMethod.DELETE)
-    public void removeUser(@PathVariable("userUid") UUID userUid) {
-        this._userService.removeUserByUUID(userUid);
+    @RequestMapping(path = "{username}", method = RequestMethod.DELETE)
+    public void removeUser(@PathVariable("username") String username) {
+        this._userService.removeUser(username);
     }
 
     /**

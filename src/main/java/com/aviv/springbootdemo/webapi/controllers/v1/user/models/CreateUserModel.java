@@ -7,6 +7,12 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class CreateUserModel {
+
+    /**
+     * Username
+     */
+    public String username;
+
     /**
      * First name
      */
@@ -44,13 +50,18 @@ public class CreateUserModel {
      */
     private String role;
 
-    public CreateUserModel(String firstName, String lastName, Gender gender, Integer age, String email, String role) {
+    public CreateUserModel(String username, String firstName, String lastName, Gender gender, Integer age, String email, String role) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
         this.email = email;
         this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getFirstName() {
